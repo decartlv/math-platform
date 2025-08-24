@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>7 класс</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>7 класс</h1>
+</header>
+<div class="container">
+  <div class="breadcrumb"><a href="index.html">Главная</a> > 7 класс</div>
+  <div id="score">Ваши пункты: 0</div>
+
+  <h2>Линейные уравнения</h2>
+  <div class="question" data-answer="4" data-points="1">
+    <p>1) Решите: 2x + 3 = 11 <b>(1 пункт)</b></p>
+    <input type="text" placeholder="Ответ"><br>
+    <button onclick="check(this)">Проверить</button>
+    <button onclick="showHint(this)">Подсказка</button>
+    <div class="hint">Вычтите 3 и разделите на 2.</div>
+    <div class="result"></div>
+  </div>
+
+  <div class="question" data-answer="5" data-points="2">
+    <p>2) Решите: 5x - 7 = 18 <b>(2 пункта)</b></p>
+    <input type="text" placeholder="Ответ"><br>
+    <button onclick="check(this)">Проверить</button>
+    <button onclick="showHint(this)">Подсказка</button>
+    <div class="hint">Прибавьте 7 и разделите на 5.</div>
+    <div class="result"></div>
+  </div>
+
+  <h2>Линейные неравенства</h2>
+  <div class="question" data-answer="x>4" data-points="1">
+    <p>3) Решите: 2x > 8 <b>(1 пункт)</b></p>
+    <input type="text" placeholder="Ответ"><br>
+    <button onclick="check(this)">Проверить</button>
+    <button onclick="showHint(this)">Подсказка</button>
+    <div class="hint">Разделите на 2.</div>
+    <div class="result"></div>
+  </div>
+
+  <div class="question" data-answer="x>-2" data-points="3">
+    <p>4) Решите: -2x + 1 < 5 <b>(3 пункта)</b></p>
+    <input type="text" placeholder="Ответ"><br>
+    <button onclick="check(this)">Проверить</button>
+    <button onclick="showHint(this)">Подсказка</button>
+    <div class="hint">При делении на отрицательное число меняем знак.</div>
+    <div class="result"></div>
+  </div>
+
+  <h2>Линейная функция</h2>
+  <div class="question" data-answer="10" data-points="2">
+    <p>5) Найдите y при x=4, если y = 3x - 2 <b>(2 пункта)</b></p>
+    <input type="text" placeholder="Ответ"><br>
+    <button onclick="check(this)">Проверить</button>
+    <button onclick="showHint(this)">Подсказка</button>
+    <div class="hint">Подставьте x=4: 3*4 - 2 = 10.</div>
+    <div class="result"></div>
+  </div>
+
+  <div class="question" data-answer="3" data-points="3">
+    <p>6) Найдите угловой коэффициент функции по точкам (1;2) и (3;8) <b>(3 пункта)</b></p>
+    <input type="text" placeholder="Ответ"><br>
+    <button onclick="check(this)">Проверить</button>
+    <button onclick="showHint(this)">Подсказка</button>
+    <div class="hint">k = (8 - 2) / (3 - 1).</div>
+    <div class="result"></div>
+  </div>
+</div>
+
+<script>
+let total=0;
+function normalize(s){return s.replace(/\s+/g,'').toLowerCase();}
+function check(btn){
+  const box=btn.parentNode;
+  const inp=box.querySelector("input").value;
+  const ans=box.dataset.answer;
+  const pts=parseInt(box.dataset.points);
+  const res=box.querySelector(".result");
+  if(normalize(inp)==normalize(ans)){
+    if(!box.classList.contains("done")){ total+=pts; box.classList.add("done"); }
+    res.textContent="✅ Верно! +"+pts+" пункт.";
+    res.style.color="green";
+  } else {
+    res.textContent="❌ Неверно";
+    res.style.color="red";
+  }
+  document.getElementById("score").textContent="Ваши пункты: "+total;
+}
+function showHint(btn){
+  btn.parentNode.querySelector(".hint").style.display="block";
+}
+</script>
+</body>
+</html>

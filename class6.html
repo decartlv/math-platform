@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>6 класс</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>6 класс</h1>
+</header>
+<div class="container">
+  <div class="breadcrumb"><a href="index.html">Главная</a> > 6 класс</div>
+  <div id="score">Ваши пункты: 0</div>
+
+  <h2>Проценты</h2>
+  <div class="question" data-answer="60" data-points="1">
+    <p>1) Найдите 20% от 300 <b>(1 пункт)</b></p>
+    <input type="text" placeholder="Ответ"><br>
+    <button onclick="check(this)">Проверить</button>
+    <button onclick="showHint(this)">Подсказка</button>
+    <div class="hint">20% = 1/5</div>
+    <div class="result"></div>
+  </div>
+
+  <div class="question" data-answer="30" data-points="1">
+    <p>2) Найдите 15% от 200 <b>(1 пункт)</b></p>
+    <input type="text" placeholder="Ответ"><br>
+    <button onclick="check(this)">Проверить</button>
+    <button onclick="showHint(this)">Подсказка</button>
+    <div class="hint">15% = 15/100</div>
+    <div class="result"></div>
+  </div>
+
+  <h2>Умножение и деление дробей</h2>
+  <div class="question" data-answer="1/2" data-points="2">
+    <p>3) Вычислите: 3/4 * 2/3 <b>(2 пункта)</b></p>
+    <input type="text" placeholder="Ответ"><br>
+    <button onclick="check(this)">Проверить</button>
+    <button onclick="showHint(this)">Подсказка</button>
+    <div class="hint">3×2 / 4×3</div>
+    <div class="result"></div>
+  </div>
+
+  <div class="question" data-answer="5/4" data-points="3">
+    <p>4) Вычислите: 5/6 ÷ 2/3 <b>(3 пункта)</b></p>
+    <input type="text" placeholder="Ответ"><br>
+    <button onclick="check(this)">Проверить</button>
+    <button onclick="showHint(this)">Подсказка</button>
+    <div class="hint">Умножьте на обратную дробь.</div>
+    <div class="result"></div>
+  </div>
+</div>
+
+<script>
+let total=0;
+function normalize(s){return s.replace(/\s+/g,'').toLowerCase();}
+function check(btn){
+  const box=btn.parentNode;
+  const inp=box.querySelector("input").value;
+  const ans=box.dataset.answer;
+  const pts=parseInt(box.dataset.points);
+  const res=box.querySelector(".result");
+  if(normalize(inp)==normalize(ans)){
+    if(!box.classList.contains("done")){ total+=pts; box.classList.add("done"); }
+    res.textContent="✅ Верно! +"+pts+" пункт.";
+    res.style.color="green";
+  } else {
+    res.textContent="❌ Неверно";
+    res.style.color="red";
+  }
+  document.getElementById("score").textContent="Ваши пункты: "+total;
+}
+function showHint(btn){
+  btn.parentNode.querySelector(".hint").style.display="block";
+}
+</script>
+</body>
+</html>
